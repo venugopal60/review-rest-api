@@ -1,0 +1,31 @@
+{
+  "name": "com.review",
+  "version": "1.0.0",
+  "description": "Explore REST API for reviews",
+  "main": "src/app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive --exit --timeout 3000",
+    "start": "node src/app.js"
+  },
+  "keywords": [
+    "review"
+  ],
+  "author": "Venugopal Parala",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "chai": "^4.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "joi": "^17.6.0",
+    "mocha": "^9.2.1",
+    "mongoose": "^6.2.4",
+    "mongoose-paginate-v2": "^1.6.3"
+  },
+  "devDependencies": {
+    "chai-http": "^4.3.0"
+  }
+}
