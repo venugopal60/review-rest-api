@@ -29,8 +29,8 @@ npm test
 
 ```sh
 - get review  without filters - /v1/review 
-- get review  with all possible filters - /v1/review??rating=3&review_source=iTunes&reviewed_date=2018-02-10&page=1
-- get review  with rating, pagination filters /v1/review??rating=3&page=2
+- get review  with all possible filters - /v1/review?rating=3&review_source=iTunes&reviewed_date=2018-02-10&page=1
+- get review  with rating, pagination filters /v1/review?rating=3&page=2
 
 ```
 
