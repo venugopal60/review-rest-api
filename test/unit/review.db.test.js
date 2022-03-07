@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const mongoUnit = require('mongo-unit');
-const testData = require('../mocks/review.mock.data');
+const testData = require('../mocks/review.data.mock');
 const DbSchema = require('../../src/models/review.schema');
 const requestData = require('../mocks/review.request.mock');
 
