@@ -3,13 +3,6 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const AppConfig = require('../config/app.config.local');
 
 
-
-
-
-const closeDbConnection = () => {
-    mongoose.connection.close();
-}
-
 const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
@@ -27,13 +20,14 @@ const ReviewSchema = new Schema({
 });
 
 ReviewSchema.plugin(mongoosePaginate);
+// const Review = mongoose.model(AppConfig.db.collectionName, ReviewSchema, AppConfig.db.collectionName);
 
-const Review = mongoose.model(AppConfig.db.collectionName, ReviewSchema, AppConfig.db.collectionName);
+const schema = {
+    ReviewModel: null,
+    createModel: (connection) => {
+        return connection.model(AppConfig.db.collectionName, ReviewSchema, AppConfig.db.collectionName);
+    },    
+    
+}
+module.exports = schema
 
-
-module.exports = {
-    openDbConnection: async (url) => await mongoose.connect(url),
-    closeDbConnection: () => mongoose.disconnect(),
-    Review
-  }
-  

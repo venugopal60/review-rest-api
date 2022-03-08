@@ -1,22 +1,27 @@
 const { expect } = require('chai');
 const mongoUnit = require('mongo-unit');
 const testData = require('../mocks/review.data.mock');
-const DbSchema = require('../../src/models/review.schema');
+const ReviewSchema = require('../../src/models/review.schema');
 const requestData = require('../mocks/review.request.mock');
-
+const DbConnection = require('../../src/models/db.connector')
 
 describe('Review Model', () => {
-
-  before(async () => { await DbSchema.openDbConnection(process.env.DATABASE_URL); })
+  let connection;
+  let ReviewModel;
+  before(async () => { 
+    connection = await DbConnection.openDbConnection(process.env.DATABASE_URL);
+    ReviewModel = ReviewSchema.createModel(connection);
+   })
   beforeEach(async () => { await mongoUnit.load(testData); })
   afterEach(() => mongoUnit.drop())
 
   it('Test should get average monthly rating by review source and average rating for 2017-02 should be 2', async () => {
     // return await reviewUT.Review.paginate({})
     // return await reviewUT.Review.find({})
-    return await DbSchema.Review.aggregate(requestData.monthlyRatings)
+    
+    return await ReviewModel.aggregate(requestData.monthlyRatings)
       .then(async result => {
-
+        // console.log(result);
         expect(result.length).to.equal(11);
         expect(result[0].review_month).to.equal('2020-01');
 
@@ -26,4 +31,4 @@ describe('Review Model', () => {
       })
   })
 
-})
+});

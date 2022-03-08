@@ -1,10 +1,13 @@
 const ReviewSchema = require('./review.schema');
 
-const ReviewModel = {
 
+const ReviewModel = {
+    getModel:()=>{
+
+    },
     saveReview: async (reviewObj) => {
         try {
-            const NewReview = new ReviewSchema.Review(reviewObj);
+            const NewReview = new ReviewSchema.ReviewModel(reviewObj);
             return await NewReview.save();    
         } catch (error) {
             throw error;
@@ -14,7 +17,7 @@ const ReviewModel = {
 
     getReview: async (query, pageOptions) => {
         try {
-            return await ReviewSchema.Review.paginate(query, pageOptions);    
+            return await ReviewSchema.ReviewModel.paginate(query, pageOptions);    
         } catch (error) {
             throw error;
         }
@@ -23,7 +26,7 @@ const ReviewModel = {
     
     getReviewAggregation: async(query)=>{
         try {
-            return await ReviewSchema.Review.aggregate(query);    
+            return await ReviewSchema.ReviewModel.aggregate(query);    
         } catch (error) {
             throw error;
         }

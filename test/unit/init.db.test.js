@@ -6,8 +6,8 @@ mongoUnit.start().then(() => {
 })
 
 after(() => {
-  const reviewSchema = require('../../src/models/review.schema')
-  console.log('stop')
-  reviewSchema.closeDbConnection();
+  const dbConnection = require('../../src/models/db.connector');
+  console.log('stop');
+  dbConnection.closeDbConnection();
   return mongoUnit.stop();
 })
